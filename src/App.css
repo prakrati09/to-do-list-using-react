@@ -1,121 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-/* General styles (unchanged) */
+/* General styles */
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f0f4f8;
+  background: linear-gradient(to right, #e2e2e2, #ffffff); /* Soft gray to white gradient */
   margin: 0;
-  padding: 40px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Align items to the top */
   height: 100vh;
+  padding: 20px;
 }
 
 .container {
   background-color: white;
-  width: 400px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 80vh; /* Set a maximum height for the container */
 }
 
+.container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Header styles */
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: center; /* Centered header */
   margin-bottom: 20px;
 }
 
 header h1 {
-  font-size: 24px;
-  color: #333;
+  font-size: 28px;
+  color: #d63384; /* Pink color for heading */
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Soft text shadow */
+  transition: color 0.3s;
+}
+
+header h1:hover {
+  color: #b02a6b; /* Darker pink on hover */
 }
 
 header input {
-  flex: 1;
-  margin-right: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #d63384; /* Border color matches heading */
   border-radius: 5px;
   font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+header input:focus {
+  outline: none;
+  border-color: #b02a6b; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(178, 42, 107, 0.5); /* Add focus shadow */
 }
 
 header button {
-  background-color: #3b82f6;
+  width: 100%;
+  background-color: #20c997; /* Teal color for Add button */
   color: white;
-  padding: 10px 15px;
+  padding: 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 header button:hover {
-  background-color: #2563eb;
+  background-color: #17a2b8; /* Darker teal on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin: 0; /* Remove bottom margin to avoid clipping */
 }
 
 /* Task Item Styles */
 li {
-  background-color: #fff;
+  background-color: #f9f9f9;
   padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+li:hover {
+  background-color: #e9ecef; /* Light background on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Add a pointer cursor to indicate clickable text for marking as completed */
 li span {
   cursor: pointer;
+  font-size: 18px; /* Increased font size */
+  transition: color 0.3s; /* Transition for text color */
 }
 
 /* Styling for completed tasks */
@@ -147,13 +141,67 @@ li button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  margin-left: 5px; /* Add space between buttons */
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 li button.edit {
   background-color: #fbbf24;
-  margin-right: 5px;
 }
 
 li button:hover {
   opacity: 0.9;
+  transform: translateY(-1px); /* Lift effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%; /* Increase width for smaller screens */
+  }
+
+  header h1 {
+    font-size: 24px; /* Reduce font size */
+  }
+
+  header input,
+  header button {
+    font-size: 14px; /* Adjust font size */
+    padding: 12px; /* Adjust padding */
+  }
+
+  li {
+    flex-direction: column; /* Stack buttons for smaller screens */
+    align-items: stretch; /* Make buttons full width */
+  }
+
+  li button {
+    width: 100%; /* Full width buttons */
+    margin-left: 0; /* Remove left margin for full width */
+    margin-top: 5px; /* Add space between buttons */
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    align-items: stretch; /* Make header elements stretch */
+  }
+
+  header h1 {
+    font-size: 22px; /* Further reduce font size */
+  }
+
+  header input,
+  header button {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 10px; /* Adjust padding */
+  }
+
+  li span {
+    font-size: 16px; /* Smaller font size for task text */
+  }
+
+  li {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
 }
